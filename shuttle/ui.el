@@ -12,6 +12,6 @@
 ;; Start page / dashboard
 (dashboard-setup-startup-hook)
 
-;; Which key show shortcuts with commands
-(which-key-mode)
-(setq which-key-idle-delay 0.3)
+;; Rainbow color braces in programming modes
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
