@@ -2,3 +2,4 @@
 * Installation
 * Features
 * Key bindings
+** Org mode

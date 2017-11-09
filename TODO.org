@@ -1,0 +1,16 @@
+#+TITLE: TODO List
+* TODO Add require where needed
+* TODO Write README
+** TODO Installation
+** TODO Keybindings
+** TODO List of features
+* TODO Add Languages
+** TODO c/c++
+** TODO python
+** TODO latex
+** TODO php
+** TODO web
+* TODO company autocompletion
+* TODO packages auto install
+* TODO flycheck
+* TODO Better / nices status line
