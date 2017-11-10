@@ -2,25 +2,33 @@
 #+STARTUP: showeverything 
 #+TODO: TODO(t) | PROGRESS(p) | DONE(d)
 #+TAGS: nicetohave feature improvement documentation important bug
-* TODO Add require where needed					:improvement:
+* DONE Add require where needed					:improvement:
 * PROGRESS Write README					      :documentation:
 ** TODO Installation
 ** TODO Keybindings
 *** PROGRESS Base keybindings
 *** PROGRESS Org mode
+*** TODO LANG bindings
 ** TODO List of features
 * TODO Add Languages						    :feature:
 ** TODO c/c++
-** TODO python
+** PROGRESS python
+*** DONE Autocompletion
+*** DONE Flycheck / python2 support
+*** TODO Virtualenv support
+*** TODO Evil keybindings
 ** TODO latex
 ** TODO php
 ** TODO web
 * PROGRESS company autocompletion				    :feature:
 ** DONE Replace the ~auto-completions~ package
 ** TODO See if we need company-quickhelp
-** TODO LANG autocompletions
+** PROGRESS LANG autocompletions
+*** DONE Anaconda 
+*** TODO Clang completer or ycmd
 * DONE packages auto install				 :feature:nicetohave:
   Added to auto refresh and install on startup
 * DONE flycheck						 :feature:nicetohave:
 * DONE Fix all elisp flycheck errors				 :nicetohave:
 * TODO Better / nicer status line 				 :nicetohave:
+* TODO Maybe migrate to =use-package=				:improvement:

@@ -34,7 +34,15 @@ inspired me to create my own config.
    |---------+---------|
    | ~SPC c~ |         |
 *** Org mode
-    | Key     | Command               |
-    |---------+-----------------------|
-    | ~SPC e~ | ~org-export-dispatch~ |
-    | ~SPC '~ | ~org-edit-special~    |
+    | Key      | Command               |
+    |----------+-----------------------|
+    | ~SPC e~  | ~org-export-dispatch~ |
+    | ~SPC '\~ | ~org-edit-special~    |
+*** Python
+    | Key       | Command                    |
+    |-----------+----------------------------|
+    | ~SPC p e~ | ~python2-enable~           |
+    | ~SPC p d~ | ~python2-disable~          |
+    | ~SPC p r~ | ~run-python~               |
+    | ~SPC p f~ | ~python-shell-send-file~   |
+    | ~SPC p b~ | ~python-shell-send-buffer~ |
