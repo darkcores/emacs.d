@@ -1,16 +1,22 @@
 #+TITLE: TODO List
-* TODO Add require where needed
-* TODO Write README
+#+STARTUP: showeverything 
+#+TODO: TODO(t) | PROGRESS(p) | DONE(d)
+#+TAGS: nicetohave feature improvement documentation important bug
+* TODO Add require where needed					:improvement:
+* PROGRESS Write README					      :documentation:
 ** TODO Installation
 ** TODO Keybindings
+*** PROGRESS Base keybindings
+*** TODO Org mode
 ** TODO List of features
-* TODO Add Languages
+* TODO Add Languages						    :feature:
 ** TODO c/c++
 ** TODO python
 ** TODO latex
 ** TODO php
 ** TODO web
-* TODO company autocompletion
-* TODO packages auto install
-* TODO flycheck
-* TODO Better / nices status line
+* TODO company autocompletion					    :feature:
+* DONE packages auto install				 :feature:nicetohave:
+  Added to auto refresh and install on startup
+* TODO flycheck						 :feature:nicetohave:
+* TODO Better / nicer status line 				 :nicetohave:

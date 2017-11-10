@@ -19,6 +19,11 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Install selected packages
+(unless package-archive-contents
+  (package-refresh-contents))
+(package-install-selected-packages)
+
 ;; Shuttle configs
 (load "~/.emacs.d/shuttle/config.el")
 (load "~/.emacs.d/shuttle/ui.el")

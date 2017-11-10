@@ -1,5 +1,18 @@
 #+TITLE: Shuttlemacs
+Shuttlemacs is the name I have given my emacs config. It's not meant
+to be something like spacemacs or anything. I like and use spacemacs a
+lot but wanted to have a faster, less bloated version with only the
+things I use. Keep in mind this is nothing like spacemacs but it
+inspired me to create my own config.
 * Installation
 * Features
 * Key bindings
+  The base keybindings
+  | Key     | Command                     |
+  |---------+-----------------------------|
+  | ~SPC f~ | ~helm-find-files~           |
+  | ~SPC d~ | ~kill-this-buffer~          |
+  | ~SPC b~ | ~helm-buffers-list~         |
+  | ~SPC v~ | ~split-window-vertically~   |
+  | ~SPC h~ | ~split-window-horizontally~ |
 ** Org mode
