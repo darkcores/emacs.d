@@ -33,20 +33,20 @@ inspired me to create my own config.
     | ~q~   | ~neotree-hide~       |
     | ~RET~ | ~neotree-enter~      |
 ** Lang
-   | Key    | Command   |
-   |--------+-----------|
-   | ~\, c~ | ~compile~ |
+   | Key   | Command   |
+   |-------+-----------|
+   | ~¸ c~ | ~compile~ |
 *** Org mode
-    | Key    | Command               |
-    |--------+-----------------------|
-    | ~\, e~ | ~org-export-dispatch~ |
-    | ~\, `~ | ~org-edit-special~    |
-    | ~\, x~ | ~org-table-export~    |
+    | Key   | Command               |
+    |-------+-----------------------|
+    | ~¸ e~ | ~org-export-dispatch~ |
+    | ~¸ ´~ | ~org-edit-special~    |
+    | ~¸ x~ | ~org-table-export~    |
 *** Python
-    | Key    | Command                    |
-    |--------+----------------------------|
-    | ~\, e~ | ~python2-enable~           |
-    | ~\, d~ | ~python2-disable~          |
-    | ~\, r~ | ~run-python~               |
-    | ~\, f~ | ~python-shell-send-file~   |
-    | ~\, b~ | ~python-shell-send-buffer~ |
+    | Key   | Command                    |
+    |-------+----------------------------|
+    | ~¸ e~ | ~python2-enable~           |
+    | ~¸ d~ | ~python2-disable~          |
+    | ~¸ r~ | ~run-python~               |
+    | ~¸ f~ | ~python-shell-send-file~   |
+    | ~¸ b~ | ~python-shell-send-buffer~ |
