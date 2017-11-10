@@ -34,6 +34,6 @@
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 
 ;; General lang options
-(define-key evil-normal-state-map (kbd "SPC c") 'compile)
+(define-key evil-normal-state-map (kbd ", c") 'compile)
 
 ;;; evil.el ends here
