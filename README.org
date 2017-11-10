@@ -7,12 +7,34 @@ inspired me to create my own config.
 * Installation
 * Features
 * Key bindings
-  The base keybindings
-  | Key     | Command                     |
-  |---------+-----------------------------|
-  | ~SPC f~ | ~helm-find-files~           |
-  | ~SPC d~ | ~kill-this-buffer~          |
-  | ~SPC b~ | ~helm-buffers-list~         |
-  | ~SPC v~ | ~split-window-vertically~   |
-  | ~SPC h~ | ~split-window-horizontally~ |
-** Org mode
+  Extra keys available next to the emacs and evil keybindings.
+** Base
+   | Key     | Command                     |
+   |---------+-----------------------------|
+   | ~SPC f~ | ~helm-find-files~           |
+   | ~SPC d~ | ~kill-this-buffer~          |
+   | ~SPC b~ | ~helm-buffers-list~         |
+   | ~SPC v~ | ~split-window-vertically~   |
+   | ~SPC h~ | ~split-window-horizontally~ |
+   | ~SPC t~ | ~neotree-toggle~            |
+*** Magit
+    | Key       | Command                |
+    |-----------+------------------------|
+    | ~SPC g d~ | ~magit-dispatch-popup~ |
+    | ~SPC g s~ | ~magit-status~         |
+*** Neotree
+    | Key   | Command              |
+    |-------+----------------------|
+    | ~TAB~ | ~neotree-enter~      |
+    | ~SPC~ | ~neotree-quick-look~ |
+    | ~q~   | ~neotree-hide~       |
+    | ~RET~ | ~neotree-enter~      |
+** Lang
+   | Key     | Command |
+   |---------+---------|
+   | ~SPC c~ |         |
+*** Org mode
+    | Key     | Command               |
+    |---------+-----------------------|
+    | ~SPC e~ | ~org-export-dispatch~ |
+    | ~SPC '~ | ~org-edit-special~    |

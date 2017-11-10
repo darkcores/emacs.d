@@ -1,4 +1,8 @@
+;;; Init -- init.el:
+;;; Documentation:
 (require 'package)
+
+;;; Code:
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 (custom-set-variables
@@ -11,7 +15,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (evil-magit magit rainbow-delimiters neotree org-bullets solarized-theme which-key helm evil))))
+    (flycheck dashboard ace-popup-menu company-anaconda company virtualenvwrapper anaconda-mode evil-magit magit rainbow-delimiters neotree org-bullets org-evil solarized-theme which-key helm evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -32,3 +36,6 @@
 
 ;; Language configs
 (load "~/.emacs.d/lang/org.el")
+(load "~/.emacs.d/lang/python.el")
+
+;;; init.el ends here

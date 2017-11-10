@@ -7,7 +7,7 @@
 ** TODO Installation
 ** TODO Keybindings
 *** PROGRESS Base keybindings
-*** TODO Org mode
+*** PROGRESS Org mode
 ** TODO List of features
 * TODO Add Languages						    :feature:
 ** TODO c/c++
@@ -15,8 +15,12 @@
 ** TODO latex
 ** TODO php
 ** TODO web
-* TODO company autocompletion					    :feature:
+* PROGRESS company autocompletion				    :feature:
+** DONE Replace the ~auto-completions~ package
+** TODO See if we need company-quickhelp
+** TODO LANG autocompletions
 * DONE packages auto install				 :feature:nicetohave:
   Added to auto refresh and install on startup
-* TODO flycheck						 :feature:nicetohave:
+* DONE flycheck						 :feature:nicetohave:
+* DONE Fix all elisp flycheck errors				 :nicetohave:
 * TODO Better / nicer status line 				 :nicetohave:

@@ -1,5 +1,13 @@
-;; General config stuff
+;;; Shuttle -- general config:
+;;; Documentation:
 
+(require 'company)
+(require 'flycheck)
+(require 'which-key)
+(require 'ace-popup-menu)
+(require 'recentf)
+
+;;; Code:
 ;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -12,7 +20,12 @@
 (which-key-mode)
 (setq which-key-idle-delay 0.3)
 
-;; Auto completion setup
-(ac-config-default)
-(setq ac-auto-show-menu 0.3)
+;; Company auto completion globally
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-minimum-prefix-length 2)
+(setq company-idle-delay 0.2)
 
+;; Flycheck syntex checking
+(global-flycheck-mode)
+
+;;; config.el ends here
