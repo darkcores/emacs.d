@@ -7,9 +7,10 @@
 
 ;; keybindings
 (defun org-keys-setup ()
-  "Setup SPC keybinds for org."
-  (define-key evil-normal-state-map (kbd "SPC e") 'org-export-dispatch)
-  (define-key evil-normal-state-map (kbd "SPC '") 'org-edit-special))
+  "Setup , keybinds for org."
+  (define-key evil-normal-state-map (kbd ", e") 'org-export-dispatch)
+  (define-key evil-normal-state-map (kbd ", x") 'org-table-export)
+  (define-key evil-normal-state-map (kbd ", '") 'org-edit-special))
 
 (defun org-setup ()
   "Setup org."

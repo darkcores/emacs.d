@@ -8,6 +8,13 @@
 (require 'recentf)
 
 ;;; Code:
+
+;; Kill other buffers
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
 ;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)

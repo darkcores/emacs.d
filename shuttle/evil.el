@@ -2,6 +2,7 @@
 ;;; Documentation:
 ;; Evil mode
 (require 'evil)
+(require 'which-key)
 (require 'org-evil)
 (require 'evil-magit)
 (require 'neotree)
@@ -11,8 +12,12 @@
 (evil-magit-init)
 
 ;; General evil keybindings
-(define-key evil-normal-state-map (kbd "SPC b") 'helm-buffers-list)
-(define-key evil-normal-state-map (kbd "SPC d") 'kill-this-buffer)
+(which-key-add-key-based-replacements
+  "SPC b" "buffer"
+  "SPC g" "magit")
+(define-key evil-normal-state-map (kbd "SPC b b") 'helm-buffers-list)
+(define-key evil-normal-state-map (kbd "SPC b k") 'kill-this-buffer)
+(define-key evil-normal-state-map (kbd "SPC b d") 'kill-other-buffers)
 (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
 (define-key evil-normal-state-map (kbd "SPC v") 'split-window-vertically)
 (define-key evil-normal-state-map (kbd "SPC h") 'split-window-horizontally)
@@ -27,5 +32,8 @@
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+
+;; General lang options
+(define-key evil-normal-state-map (kbd "SPC c") 'compile)
 
 ;;; evil.el ends here

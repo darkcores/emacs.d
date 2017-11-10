@@ -1,22 +1,25 @@
 #+TITLE: Shuttlemacs
 Shuttlemacs is the name I have given my emacs config. It's not meant
 to be something like spacemacs or anything. I like and use spacemacs a
-lot but wanted to have a faster, less bloated version with only the
+lot, but wanted to have a faster, less bloated version with only the
 things I use. Keep in mind this is nothing like spacemacs but it
 inspired me to create my own config.
 * Installation
 * Features
+** Autocompletion
+** Syntax checking
 * Key bindings
   Extra keys available next to the emacs and evil keybindings.
 ** Base
-   | Key     | Command                     |
-   |---------+-----------------------------|
-   | ~SPC f~ | ~helm-find-files~           |
-   | ~SPC d~ | ~kill-this-buffer~          |
-   | ~SPC b~ | ~helm-buffers-list~         |
-   | ~SPC v~ | ~split-window-vertically~   |
-   | ~SPC h~ | ~split-window-horizontally~ |
-   | ~SPC t~ | ~neotree-toggle~            |
+   | Key       | Command                     |
+   |-----------+-----------------------------|
+   | ~SPC f~   | ~helm-find-files~           |
+   | ~SPC b k~ | ~kill-this-buffer~          |
+   | ~SPC b d~ | ~kill-other-buffers~        |
+   | ~SPC b b~ | ~helm-buffers-list~         |
+   | ~SPC v~   | ~split-window-vertically~   |
+   | ~SPC h~   | ~split-window-horizontally~ |
+   | ~SPC t~   | ~neotree-toggle~            |
 *** Magit
     | Key       | Command                |
     |-----------+------------------------|
@@ -30,14 +33,14 @@ inspired me to create my own config.
     | ~q~   | ~neotree-hide~       |
     | ~RET~ | ~neotree-enter~      |
 ** Lang
-   | Key     | Command |
-   |---------+---------|
-   | ~SPC c~ |         |
+   | Key     | Command   |
+   |---------+-----------|
+   | ~SPC c~ | ~compile~ |
 *** Org mode
     | Key      | Command               |
     |----------+-----------------------|
     | ~SPC e~  | ~org-export-dispatch~ |
-    | ~SPC '\~ | ~org-edit-special~    |
+    | ~SPC \'~ | ~org-edit-special~    |
 *** Python
     | Key       | Command                    |
     |-----------+----------------------------|

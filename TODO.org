@@ -5,21 +5,27 @@
 * DONE Add require where needed					:improvement:
 * PROGRESS Write README					      :documentation:
 ** TODO Installation
-** TODO Keybindings
+** PROGRESS Keybindings
 *** PROGRESS Base keybindings
 *** PROGRESS Org mode
-*** TODO LANG bindings
+*** PROGRESS LANG bindings
 ** TODO List of features
-* TODO Add Languages						    :feature:
+* PROGRESS Add Languages					    :feature:
+** PROGRESS Org
+*** DONE Exporting binding
+*** TODO Code eval / block
+*** TODO Support other languages
 ** TODO c/c++
 ** PROGRESS python
 *** DONE Autocompletion
 *** DONE Flycheck / python2 support
 *** TODO Virtualenv support
-*** TODO Evil keybindings
+*** PROGRESS Evil keybindings
 ** TODO latex
 ** TODO php
 ** TODO web
+** TODO Other
+   Whatever language we happen to need.
 * PROGRESS company autocompletion				    :feature:
 ** DONE Replace the ~auto-completions~ package
 ** TODO See if we need company-quickhelp
@@ -32,3 +38,5 @@
 * DONE Fix all elisp flycheck errors				 :nicetohave:
 * TODO Better / nicer status line 				 :nicetohave:
 * TODO Maybe migrate to =use-package=				:improvement:
+* DONE Add , commands for modes instead of SPC			 :nicetohave:
+  No need to worry about overlap with general commands
