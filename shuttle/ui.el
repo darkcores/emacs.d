@@ -12,7 +12,10 @@
 (toggle-scroll-bar -1)
 
 ;; Font setup
-(set-frame-font "Source Code Pro 11")
+(if (string= (getenv "LC_CTYPE") "ja_JP.UTF-8")
+    (load-file "~/.emacs.d/shuttle/cjk.el")
+    ;; (set-frame-font "Noto Sans Mono CJK JP 12")
+    (set-frame-font "Source Code Pro 11"))
 
 ;; Theme
 (load-theme 'solarized-light)
@@ -20,7 +23,7 @@
 ;; Start page / dashboard
 (dashboard-setup-startup-hook)
 (setq dashboard-banner-logo-title "Welcome to Shuttlemacs")
-(setq dashboard-items '((recents  . 5)
+(setq dashboard-items '((recents  . 10)
                         (projects . 5)
                         (agenda . 5)))
 
