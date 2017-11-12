@@ -1,9 +1,16 @@
 ;;; Org -- Nicer org
 ;;; Documentation:
+(require 'org-agenda)
 (require 'org-bullets)
 (require 'evil)
 
 ;;; Code:
+
+;; log todo items with timestamp
+(setq org-log-done 'time)
+
+;; Agenda setup
+(setq org-agenda-files '("/home/jorrit/Documents/agenda"))
 
 ;; keybindings
 (defun org-keys-setup ()

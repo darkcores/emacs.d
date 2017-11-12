@@ -17,9 +17,11 @@ inspired me to create my own config.
    | ~SPC b k~ | ~kill-this-buffer~          |
    | ~SPC b d~ | ~kill-other-buffers~        |
    | ~SPC b b~ | ~helm-buffers-list~         |
+   | ~SPC b d~ | ~switch-to-home-buffer~     |
    | ~SPC v~   | ~split-window-vertically~   |
    | ~SPC h~   | ~split-window-horizontally~ |
    | ~SPC t~   | ~neotree-toggle~            |
+   | ~SPC a~   | ~org-agenda-list~           |
 *** Magit
     | Key       | Command                |
     |-----------+------------------------|

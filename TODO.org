@@ -13,6 +13,10 @@
 * PROGRESS Add Languages					    :feature:
 ** PROGRESS Org
 *** DONE Exporting binding
+*** TODO Org agenda
+    With a script to update ical would be nice.
+**** DONE Script ical from url / uhasselt
+     Note: not in this project.
 *** TODO Code eval / block
 *** TODO Support other languages
 ** TODO c/c++

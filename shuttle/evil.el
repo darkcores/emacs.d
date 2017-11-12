@@ -18,6 +18,7 @@
 (define-key evil-normal-state-map (kbd "SPC b b") 'helm-buffers-list)
 (define-key evil-normal-state-map (kbd "SPC b k") 'kill-this-buffer)
 (define-key evil-normal-state-map (kbd "SPC b d") 'kill-other-buffers)
+(define-key evil-normal-state-map (kbd "SPC b h") 'switch-to-home-buffer)
 (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
 (define-key evil-normal-state-map (kbd "SPC v") 'split-window-vertically)
 (define-key evil-normal-state-map (kbd "SPC h") 'split-window-horizontally)
@@ -32,6 +33,9 @@
 (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
 (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+
+;; Org agenda
+(define-key evil-normal-state-map (kbd "SPC a") 'org-agenda-list)
 
 ;; General lang options
 (define-key evil-normal-state-map (kbd ", c") 'compile)

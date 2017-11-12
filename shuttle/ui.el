@@ -19,6 +19,10 @@
 
 ;; Start page / dashboard
 (dashboard-setup-startup-hook)
+(setq dashboard-banner-logo-title "Welcome to Shuttlemacs")
+(setq dashboard-items '((recents  . 5)
+                        (projects . 5)
+                        (agenda . 5)))
 
 ;; Rainbow color braces in programming modes
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)

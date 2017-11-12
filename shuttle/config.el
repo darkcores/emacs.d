@@ -2,6 +2,7 @@
 ;;; Documentation:
 
 (require 'company)
+(require 'fcitx)
 (require 'flycheck)
 (require 'which-key)
 (require 'ace-popup-menu)
@@ -14,6 +15,22 @@
   "Kill all other buffers."
   (interactive)
   (mapc 'kill-buffer (delq (current-buffer) (buffer-list))))
+
+(defun switch-to-home-buffer ()
+  "Switch to the dashboard buffer."
+  (interactive)
+  (switch-to-buffer "*dashboard*"))
+
+(defun my-inhibit-startup-screen-file ()
+  "Startup screen inhibitor for `command-line-functions`.
+Inhibits startup screen on the first unrecognised option which
+names an existing file."
+  (ignore
+   (setq inhibit-startup-screen
+         (file-exists-p
+          (expand-file-name argi command-line-default-directory)))))
+
+(add-hook 'command-line-functions #'my-inhibit-startup-screen-file)
 
 ;; Recent files
 (recentf-mode 1)
@@ -34,5 +51,9 @@
 
 ;; Flycheck syntex checking
 (global-flycheck-mode)
+
+;; Support for fcitx
+(fcitx-aggressive-setup)
+(setq fcitx-use-dbus t)
 
 ;;; config.el ends here
