@@ -19,6 +19,7 @@
 (define-key evil-normal-state-map (kbd "SPC b k") 'kill-this-buffer)
 (define-key evil-normal-state-map (kbd "SPC b d") 'kill-other-buffers)
 (define-key evil-normal-state-map (kbd "SPC b h") 'switch-to-home-buffer)
+(define-key evil-normal-state-map (kbd "SPC b r") 'revert-buffer)
 (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
 (define-key evil-normal-state-map (kbd "SPC v") 'split-window-vertically)
 (define-key evil-normal-state-map (kbd "SPC h") 'split-window-horizontally)

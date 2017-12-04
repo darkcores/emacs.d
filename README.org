@@ -5,9 +5,18 @@ lot, but wanted to have a faster, less bloated version with only the
 things I use. Keep in mind this is nothing like spacemacs but it
 inspired me to create my own config.
 * Installation
+  Installation is simple: clone this repository to =~/.emacs.d= and
+  start emacs. You might need to run =package-refresh-contents=.
 * Features
-** Autocompletion
-** Syntax checking
+  A list of the most significant features.
+  - Company autocompletion
+  - CJK Font support when =LC_CTYPE=ja_JP.UTF-8=
+  - Flycheck
+  - Evil
+** Languages
+   - Org-mode
+   - Python
+   - PHP
 * Key bindings
   Extra keys available next to the emacs and evil keybindings.
 ** Base
@@ -18,10 +27,12 @@ inspired me to create my own config.
    | ~SPC b d~ | ~kill-other-buffers~        |
    | ~SPC b b~ | ~helm-buffers-list~         |
    | ~SPC b d~ | ~switch-to-home-buffer~     |
+   | ~SPC b r~ | ~revert-buffer~             |
    | ~SPC v~   | ~split-window-vertically~   |
    | ~SPC h~   | ~split-window-horizontally~ |
    | ~SPC t~   | ~neotree-toggle~            |
    | ~SPC a~   | ~org-agenda-list~           |
+   | ~¸ c~     | ~compile~                   |
 *** Magit
     | Key       | Command                |
     |-----------+------------------------|
@@ -39,11 +50,15 @@ inspired me to create my own config.
    |-------+-----------|
    | ~¸ c~ | ~compile~ |
 *** Org mode
-    | Key   | Command               |
-    |-------+-----------------------|
-    | ~¸ e~ | ~org-export-dispatch~ |
-    | ~¸ ´~ | ~org-edit-special~    |
-    | ~¸ x~ | ~org-table-export~    |
+    | Key   | Command                   |
+    |-------+---------------------------|
+    | ~¸ e~ | ~org-export-dispatch~     |
+    | ~¸ ´~ | ~org-edit-special~        |
+    | ~¸ .~ | ~org-time-stamp~          |
+    | ~¸ x~ | ~org-table-export~        |
+    | ~¸ t~ | ~org-twbs-export-to-html~ |
+    | ~¸ s~ | ~org-schedule~            |
+    | ~¸ d~ | ~org-deadline~            |
 *** Python
     | Key   | Command                    |
     |-------+----------------------------|
