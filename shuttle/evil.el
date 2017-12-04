@@ -14,13 +14,15 @@
 ;; General evil keybindings
 (which-key-add-key-based-replacements
   "SPC b" "buffer"
-  "SPC g" "magit")
+  "SPC g" "magit"
+  "SPC f" "files")
 (define-key evil-normal-state-map (kbd "SPC b b") 'helm-buffers-list)
 (define-key evil-normal-state-map (kbd "SPC b k") 'kill-this-buffer)
 (define-key evil-normal-state-map (kbd "SPC b d") 'kill-other-buffers)
 (define-key evil-normal-state-map (kbd "SPC b h") 'switch-to-home-buffer)
 (define-key evil-normal-state-map (kbd "SPC b r") 'revert-buffer)
-(define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
+(define-key evil-normal-state-map (kbd "SPC f f") 'helm-find-files)
+(define-key evil-normal-state-map (kbd "SPC f t") 'helm-tramp)
 (define-key evil-normal-state-map (kbd "SPC v") 'split-window-vertically)
 (define-key evil-normal-state-map (kbd "SPC h") 'split-window-horizontally)
 
