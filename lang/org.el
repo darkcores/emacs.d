@@ -18,6 +18,9 @@
   (define-key evil-normal-state-map (kbd ", e") 'org-export-dispatch)
   (define-key evil-normal-state-map (kbd ", x") 'org-table-export)
   (define-key evil-normal-state-map (kbd ", .") 'org-time-stamp)
+  (define-key evil-normal-state-map (kbd ", t") 'org-twbs-export-to-html)
+  (define-key evil-normal-state-map (kbd ", s") 'org-schedule)
+  (define-key evil-normal-state-map (kbd ", d") 'org-deadline)
   (define-key evil-normal-state-map (kbd ", '") 'org-edit-special))
 
 (defun org-setup ()

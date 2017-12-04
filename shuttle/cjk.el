@@ -1,13 +1,13 @@
 ;;; CJK -- font settings
 ;;; Documentation:
-;; Fiz cjk fint thingies
-
+;; Fix cjk font thingies
+;; From: https://coldnew.github.io/d5011be2/
 ;;; Code:
 
 (defvar emacs-english-font "Source Code Pro"
   "The font name of English.")
 
-(defvar emacs-cjk-font "Source Han Code JP L"
+(defvar emacs-cjk-font "Source Han Code JP R"
   "The font name for CJK.")
 
 (defvar emacs-font-size-pair '(15 . 18)
