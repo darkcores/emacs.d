@@ -13,7 +13,8 @@
 * PROGRESS Add Languages					    :feature:
 ** PROGRESS Org
 *** DONE Exporting binding
-*** TODO Org agenda
+*** DONE Org agenda
+    CLOSED: [2017-12-05 Tue 10:56]
     With a script to update ical would be nice.
 **** DONE Script ical from url / uhasselt
      Note: not in this project.
@@ -26,8 +27,11 @@
 *** TODO Virtualenv support
 *** PROGRESS Evil keybindings
 ** TODO latex
-** TODO php
+** PROGRESS php
+*** TODO Test config
 ** TODO web
+** TODO Rust
+** TODO Golang
 ** TODO Other
    Whatever language we happen to need.
 * PROGRESS company autocompletion				    :feature:

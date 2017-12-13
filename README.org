@@ -23,7 +23,8 @@ inspired me to create my own config.
 ** Base
    | Key       | Command                     |
    |-----------+-----------------------------|
-   | ~SPC f~   | ~helm-find-files~           |
+   | ~SPC f f~ | ~helm-find-files~           |
+   | ~SPC f t~ | ~helm-tramp~                |
    | ~SPC b k~ | ~kill-this-buffer~          |
    | ~SPC b d~ | ~kill-other-buffers~        |
    | ~SPC b b~ | ~helm-buffers-list~         |
@@ -68,3 +69,4 @@ inspired me to create my own config.
     | ~¸ r~ | ~run-python~               |
     | ~¸ f~ | ~python-shell-send-file~   |
     | ~¸ b~ | ~python-shell-send-buffer~ |
+    
