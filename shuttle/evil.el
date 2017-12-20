@@ -5,6 +5,7 @@
 (require 'which-key)
 (require 'org-evil)
 (require 'evil-magit)
+(require 'git-timemachine)
 (require 'neotree)
 
 ;;; Code:
@@ -29,6 +30,8 @@
 ;; Magit
 (define-key evil-normal-state-map (kbd "SPC g d") 'magit-dispatch-popup)
 (define-key evil-normal-state-map (kbd "SPC g s") 'magit-status)
+(define-key evil-normal-state-map (kbd "SPC g b") 'magit-blame)
+(define-key evil-normal-state-map (kbd "SPC g t") 'git-timemachine-toggle)
 
 ;; Neotree
 (define-key evil-normal-state-map (kbd "SPC t") 'neotree-toggle)
@@ -42,5 +45,8 @@
 
 ;; General lang options
 (define-key evil-normal-state-map (kbd ", c") 'compile)
+
+;; Projectile
+(define-key evil-normal-state-map (kbd "SPC r") 'projectile-grep)
 
 ;;; evil.el ends here

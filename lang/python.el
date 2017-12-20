@@ -1,6 +1,7 @@
 ;;; Python -- setup
 ;;; Documentation:
 
+(require 'package)
 (require 'flycheck)
 (require 'evil)
 (require 'anaconda-mode)
