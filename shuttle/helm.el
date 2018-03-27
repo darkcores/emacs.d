@@ -4,6 +4,7 @@
 
 (require 'helm)
 (require 'helm-config)
+(require 'helm-gtags)
 
 ;; Don't know where these come from but to suppress errors
 (defvar helm-google-suggest-use-curl-p)

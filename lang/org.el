@@ -9,8 +9,11 @@
 ;; log todo items with timestamp
 (setq org-log-done 'time)
 
-;; Agenda setup
-(setq org-agenda-files '("/home/jorrit/Documents/agenda"))
+;; Agenda setup (setq org-agenda-files
+;; '("/home/jorrit/Documents/agenda"))
+
+;; For now we disable org agenda to speed up startup (and we don't
+;; really use it anyways)
 
 ;; keybindings
 (defun org-keys-setup ()

@@ -56,4 +56,6 @@ names an existing file."
 (fcitx-aggressive-setup)
 (setq fcitx-use-dbus t)
 
+;; Indentation
+
 ;;; config.el ends here
