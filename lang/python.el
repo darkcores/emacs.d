@@ -36,11 +36,11 @@
 ;; Keybindings
 (defun python-keys-setup ()
   "Setup python , keys."
-  (define-key evil-normal-state-map (kbd ", e") 'python2-enable)
-  (define-key evil-normal-state-map (kbd ", d") 'python2-disable)
-  (define-key evil-normal-state-map (kbd ", r") 'run-python)
-  (define-key evil-normal-state-map (kbd ", b") 'python-shell-send-buffer)
-  (define-key evil-normal-state-map (kbd ", f") 'python-shell-send-file))
+  (evil-define-key 'normal python-mode-map (kbd ", e") 'python2-enable)
+  (evil-define-key 'normal python-mode-map (kbd ", d") 'python2-disable)
+  (evil-define-key 'normal python-mode-map (kbd ", r") 'run-python)
+  (evil-define-key 'normal python-mode-map (kbd ", b") 'python-shell-send-buffer)
+  (evil-define-key 'normal python-mode-map (kbd ", f") 'python-shell-send-file))
 
 (add-hook 'python-mode-hook 'python-keys-setup)
 

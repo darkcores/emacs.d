@@ -16,7 +16,7 @@
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (srefactor clang-format helm-gtags php-eldoc company-php cargo company-racer flycheck-rust ox-epub org auctex-latexmk company-auctex auctex tide typescript-mode git-timemachine flycheck-ycmd company-ycmd use-package helm-tramp ac-php rust-mode php-mode web-beautify web-mode ox-twbs fcitx helm-projectile flycheck dashboard ace-popup-menu company-anaconda company virtualenvwrapper anaconda-mode evil-magit magit rainbow-delimiters neotree org-bullets org-evil solarized-theme which-key helm evil))))
+    (org-babel-eval-in-repl htmlize srefactor clang-format helm-gtags php-eldoc company-php cargo company-racer flycheck-rust ox-epub org auctex-latexmk company-auctex auctex tide typescript-mode git-timemachine flycheck-ycmd company-ycmd use-package helm-tramp ac-php rust-mode php-mode web-beautify web-mode ox-twbs fcitx helm-projectile flycheck dashboard ace-popup-menu company-anaconda company virtualenvwrapper anaconda-mode evil-magit magit rainbow-delimiters neotree org-bullets org-evil solarized-theme which-key helm evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -42,5 +42,6 @@
 (load "~/.emacs.d/lang/php.el")
 (load "~/.emacs.d/lang/cpp.el")
 (load "~/.emacs.d/lang/javascript.el")
+(load "~/.emacs.d/lang/rust.el")
 
 ;;; init.el ends here
