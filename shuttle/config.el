@@ -58,4 +58,11 @@ names an existing file."
 
 ;; Indentation
 
+;; Toggle CJK
+(defun cjk-enable ()
+	"Enable CJK input / font setup."
+	(interactive)
+	(load-file "~/.emacs.d/shuttle/cjk.el")
+    	(set-frame-font "Source Code Pro 11"))
+
 ;;; config.el ends here

@@ -49,4 +49,7 @@
 ;; Projectile
 (define-key evil-normal-state-map (kbd "SPC r") 'projectile-grep)
 
+;; CJK toggle
+(define-key evil-normal-state-map (kbd "SPC c") 'cjk-enable)
+
 ;;; evil.el ends here
