@@ -33,14 +33,14 @@
 ;; keybindings
 (defun org-keys-setup ()
   "Setup , keybinds for org."
-  (define-key evil-normal-state-map (kbd ", e") 'org-export-dispatch)
-  (define-key evil-normal-state-map (kbd ", x") 'org-table-export)
-  (define-key evil-normal-state-map (kbd ", .") 'org-time-stamp)
-  (define-key evil-normal-state-map (kbd ", t") 'org-twbs-export-to-html)
-  (define-key evil-normal-state-map (kbd ", s") 'org-schedule)
-  (define-key evil-normal-state-map (kbd ", d") 'org-deadline)
-  (define-key evil-normal-state-map (kbd ", c") 'org-ref-helm-cite)
-  (define-key evil-normal-state-map (kbd ", '") 'org-edit-special))
+  (evil-define-key 'normal org-mode-map (kbd ", e") 'org-export-dispatch)
+  (evil-define-key 'normal org-mode-map (kbd ", x") 'org-table-export)
+  (evil-define-key 'normal org-mode-map (kbd ", .") 'org-time-stamp)
+  (evil-define-key 'normal org-mode-map (kbd ", t") 'org-twbs-export-to-html)
+  (evil-define-key 'normal org-mode-map (kbd ", s") 'org-schedule)
+  (evil-define-key 'normal org-mode-map (kbd ", d") 'org-deadline)
+  (evil-define-key 'normal org-mode-map (kbd ", c") 'org-ref-helm-cite)
+  (evil-define-key 'normal org-mode-map (kbd ", '") 'org-edit-special))
 
 (defun org-setup ()
   "Setup org."
