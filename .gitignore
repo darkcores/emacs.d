@@ -8,3 +8,6 @@ recentf
 ac-comphist.dat
 kkcrc
 projectile-bookmarks.eld
+.cache/
+srecode-map.el
+semanticdb/
