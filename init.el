@@ -169,12 +169,13 @@ names an existing file."
 ;; Nice dashboard and overview
 (use-package dashboard
   :ensure t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-banner-logo-title "Welcome to Shuttlemacs")
-  (setq dashboard-items '((recents  . 10)
+  :init
+  (setq dashboard-items '((recents  . 15)
                           (projects . 5)
-                          (agenda . 5))))
+                          (bookmarks . 5)))
+  (setq dashboard-banner-logo-title "Welcome to Shuttlemacs")
+  :config
+  (dashboard-setup-startup-hook))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -295,8 +296,9 @@ names an existing file."
 
   (use-package helm-projectile
 	:ensure t
-	:defer t)
-
+	:config
+	(helm-projectile-on))
+  
   (use-package helm-tramp
 	:ensure t
 	:defer t)
@@ -340,7 +342,7 @@ names an existing file."
 	"h" 'split-window-vertically
 	"v" 'split-window-horizontally
     ;; Projectile
-    "r" 'projectile-grep
+    "r" 'helm-projectile-grep
     ;; CJK toggle
     "c" 'cjk-enable)
   (local-leader-def
