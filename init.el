@@ -350,14 +350,7 @@ names an existing file."
 
 (use-package evil-magit
   :ensure t
-  :config
-  (evil-magit-init)
-  (use-package git-timemachine
-	:ensure t
-	:general
-	(my-leader-def
-	  :states 'normal
-	  "gt" 'git-timemachine-toggle))
+  :hook (magit-mode . evil-magit-init)
   :general
   (my-leader-def
 	:states 'normal
@@ -365,6 +358,13 @@ names an existing file."
 	"gd" 'magit-dispatch-popup
 	"gs" 'magit-status
 	"gb" 'magit-blame))
+
+(use-package git-timemachine
+  :ensure t
+  :general
+  (my-leader-def
+	:states 'normal
+	"gt" 'git-timemachine-toggle))
 
 (use-package neotree
   :ensure t
