@@ -14,7 +14,7 @@
 	("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-	(rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
+	(restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -137,8 +137,8 @@ names an existing file."
 (package-initialize)
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
 (package-install 'use-package))
@@ -170,11 +170,36 @@ names an existing file."
   :ensure t
   :config
   (general-create-definer my-leader-def
-			  ;; :prefix my-leader
-			  :prefix "SPC")
+	;; :prefix my-leader
+	:prefix "SPC")
   (general-create-definer local-leader-def
-			  ;; :prefix local-leader
-			  :prefix ","))
+	;; :prefix local-leader
+	:prefix ","))
+
+;; Update packages
+(use-package auto-package-update
+  :ensure t
+  :init
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  ;; (auto-package-update-maybe)
+  :config
+  (defun update-packages ()
+	(interactive)
+	(auto-package-update-maybe))
+  :general
+  (my-leader-def
+	:states 'normal
+	:keymaps 'dashboard-mode-map
+	"U" 'update-packages))
+
+(use-package restart-emacs
+  :ensure t
+  :general
+  (my-leader-def
+	:states 'normal
+	:keymaps 'dashboard-mode-map
+	"R" 'restart-emacs))
 
 ;; Recent files
 (use-package recentf
@@ -343,6 +368,7 @@ names an existing file."
 
 (use-package org
   :ensure t
+  :pin "org"
   :general
   (local-leader-def
     :states 'normal
