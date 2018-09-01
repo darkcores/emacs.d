@@ -282,6 +282,10 @@ names an existing file."
    "<tab>" 'helm-execute-persistent-action
    "C-i" 'helm-execute-persistent-action
    "C-z" 'helm-select-action)
+  (my-leader-def
+	:states 'normal
+	"bb" 'helm-buffers-list
+	"ff" 'helm-find-files)
   :config
   (setq helm-split-window-inside-p           t ; open helm buffer inside current window, not occupy whole other window
 	helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -296,12 +300,20 @@ names an existing file."
 
   (use-package helm-projectile
 	:ensure t
+	:defer nil
+	:general
+	(my-leader-def
+	  :states 'normal
+      "r" 'helm-projectile-grep)
 	:config
 	(helm-projectile-on))
   
   (use-package helm-tramp
 	:ensure t
-	:defer t)
+	:general
+	(my-leader-def
+	  :states 'normal
+	  "ft" 'helm-tramp))
   
   (use-package helm-gtags-mode
 	:ensure helm-gtags
@@ -332,17 +344,12 @@ names an existing file."
     "b" '(:ignore t :which-key "buffer")
     "g" '(:ignore t :which-key "magit")
     "f" '(:ignore t :which-key "files")
-	"bb" 'helm-buffers-list
 	"bk" 'kill-this-buffer
 	"bd" 'kill-other-buffers
 	"bh" 'switch-to-home-buffer
 	"br" 'revert-buffer
-	"ff" 'helm-find-files
-	"ft" 'helm-tramp
 	"h" 'split-window-vertically
 	"v" 'split-window-horizontally
-    ;; Projectile
-    "r" 'helm-projectile-grep
     ;; CJK toggle
     "c" 'cjk-enable)
   (local-leader-def
@@ -381,6 +388,7 @@ names an existing file."
    "SPC" 'neotree-quick-look
    "q" 'neotree-hide
    "t" 'neotree-toggle
+   "r" 'neotree-refresh
    "RET" 'neotree-enter))
 
 (use-package org
