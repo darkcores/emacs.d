@@ -4,6 +4,11 @@ to be something like spacemacs or anything. I like and use spacemacs a
 lot, but wanted to have a faster, less bloated version with only the
 things I use. Keep in mind this is nothing like spacemacs but it
 inspired me to create my own config.
+#+BEGIN_EXAMPLE
+A lot of things are changing with the switch to use-package. 
+There are some things that still need to be done to speedup emacs.
+And the keybindings are a bit out-of-date.
+#+END_EXAMPLE
 * Installation
   Installation is simple: clone this repository to =~/.emacs.d= and
   start emacs. You might need to run =package-refresh-contents=.

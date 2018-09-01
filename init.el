@@ -165,93 +165,6 @@ names an existing file."
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; Recent files
-(use-package recentf
-  :ensure t
-  :commands (recentf-mode)
-  :config
-  (recentf-mode 1)
-  (setq recentf-max-menu-items 25)
-  (global-set-key "\C-x\ \C-r" 'recentf-open-files))
-
-;; Nice ace popup
-(use-package ace-popup-menu
-  :ensure t
-  :config
-  (ace-popup-menu-mode 1))
-
-;; Which key to show keyboard bindings
-(use-package which-key
-  :ensure t
-  :config
-  (setq which-key-idle-delay 0.3)
-  (which-key-mode))
-
-;; Global autocompletion
-(use-package company
-  :ensure t
-  :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (setq company-minimum-prefix-length 2)
-  (setq company-idle-delay 0.2))
-
-;; Global syntax checking
-(use-package flycheck
-  :ensure t
-  :config
-  (global-flycheck-mode))
-
-;; Fcitx input setup
-(use-package fcitx
-  :ensure t
-  :init
-  (setq fcitx-use-dbus t)
-  :config
-  (fcitx-aggressive-setup))
-
-;; Nice things with helm
-(use-package helm
-  :ensure t
-  :commands (helm-autoresize-mode)
-  :init
-  ;; (defvar helm-google-suggest-use-curl-p)
-  (defvar helm-ff-search-library-in-sexp)
-  (defvar helm-echo-input-in-header-line)
-  (defvar helm-ff-file-name-history-use-recentf)
-  :config
-  ;; Bind executes to helm stuff
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "M-:") 'helm-eval-expression)
-  
-  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (global-unset-key (kbd "C-x c"))
-  
-  (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-  (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-  (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-  (setq helm-split-window-inside-p           t ; open helm buffer inside current window, not occupy whole other window
-	helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-	helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-	helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-	helm-ff-file-name-history-use-recentf t
-	helm-echo-input-in-header-line t)
-  
-  (setq helm-autoresize-max-height 0)
-  (setq helm-autoresize-min-height 20)
-  (helm-autoresize-mode 1)
-
-  (helm-mode 1))
-
-(use-package helm-projectile
-  :ensure t)
-
-(use-package helm-tramp
-  :ensure t)
-
 ;; Easier keybindings so we can do more lazy loading
 (use-package general
   :ensure t
@@ -263,57 +176,185 @@ names an existing file."
 			  ;; :prefix local-leader
 			  :prefix ","))
 
+;; Recent files
+(use-package recentf
+  :ensure t
+  :commands (recentf-mode)
+  :hook (after-init . recentf-mode)
+  :init
+  (setq recentf-max-menu-items 25)
+  :general
+  (my-leader-def
+	:states 'normal
+	"bl" 'recentf-open-files)
+  (general-define-key "\C-x\ \C-r" 'recentf-open-files))
+
+;; Nice ace popup
+(use-package ace-popup-menu
+  :ensure t
+  :hook (after-init . ace-popup-menu-mode))
+
+;; Which key to show keyboard bindings
+(use-package which-key
+  :ensure t
+  :hook (after-init . which-key-mode)
+  :init
+  (setq which-key-idle-delay 0.3))
+
+;; Global autocompletion
+(use-package company
+  :ensure t
+  :hook (after-init . global-company-mode)
+  :init
+  (setq company-minimum-prefix-length 2)
+  (setq company-idle-delay 0.2))
+
+;; Global syntax checking
+(use-package flycheck
+  :ensure t
+  :hook (after-init . global-flycheck-mode))
+
+;; Fcitx input setup
+(use-package fcitx
+  :ensure t
+  :init
+  (setq fcitx-use-dbus t)
+  :hook (after-init . fcitx-aggressive-setup))
+
+;; Nice things with helm
+(use-package helm
+  :ensure t
+  :hook (after-init . helm-mode)
+  :commands (helm-autoresize-mode)
+  :init
+  ;; (defvar helm-google-suggest-use-curl-p)
+  (defvar helm-ff-search-library-in-sexp)
+  (defvar helm-echo-input-in-header-line)
+  (defvar helm-ff-file-name-history-use-recentf)
+  :general
+  (general-define-key
+   "M-x" 'helm-M-x
+   "M-:" 'helm-eval-expression
+   "C-c h" 'helm-command-prefix)
+  (general-define-key
+   :keymaps 'helm-map
+   "<tab>" 'helm-execute-persistent-action
+   "C-i" 'helm-execute-persistent-action
+   "C-z" 'helm-select-action)
+  :config
+  (setq helm-split-window-inside-p           t ; open helm buffer inside current window, not occupy whole other window
+	helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+	helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+	helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+	helm-ff-file-name-history-use-recentf t
+	helm-echo-input-in-header-line t)
+  
+  (setq helm-autoresize-max-height 0)
+  (setq helm-autoresize-min-height 20)
+  (helm-autoresize-mode 1)
+
+  (use-package helm-projectile
+	:ensure t
+	:defer t)
+
+  (use-package helm-tramp
+	:ensure t
+	:defer t)
+  
+  (use-package helm-gtags-mode
+	:ensure helm-gtags
+	:hook (c-mode c++-mode)
+	:general
+	(local-leader-def
+	  :states 'normal
+	  :keymaps '(c++-mode-map c-mode-map)
+	  "f" 'helm-gtags-find-tag
+	  "j" 'helm-gtags-dwim
+	  "g" '(:ignore t :which-key "gtags")
+	  "gp" 'helm-gtags-find-pattern
+	  "gr" 'helm-gtags-find-rtag
+	  "gP" 'helm-gtags-find-files
+	  "gp" 'helm-gtags-find-pattern
+	  "gf" 'helm-gtags-parse-file
+	  "gg" 'helm-gtags-create-tags
+	  "gu" 'helm-gtags-update-tags
+	  "gc" 'helm-gtags-clear-cache)))
+
+
 (use-package evil
   :ensure t
-  :after (which-key helm)
-  :config
-  (evil-mode 1)
-  (which-key-add-key-based-replacements
-    "SPC b" "buffer"
-    "SPC g" "magit"
-    "SPC f" "files")
-  (define-key evil-normal-state-map (kbd "SPC b b") 'helm-buffers-list)
-  (define-key evil-normal-state-map (kbd "SPC b k") 'kill-this-buffer)
-  (define-key evil-normal-state-map (kbd "SPC b d") 'kill-other-buffers)
-  (define-key evil-normal-state-map (kbd "SPC b h") 'switch-to-home-buffer)
-  (define-key evil-normal-state-map (kbd "SPC b r") 'revert-buffer)
-  (define-key evil-normal-state-map (kbd "SPC f f") 'helm-find-files)
-  (define-key evil-normal-state-map (kbd "SPC f t") 'helm-tramp)
-  (define-key evil-normal-state-map (kbd "SPC h") 'split-window-vertically)
-  (define-key evil-normal-state-map (kbd "SPC v") 'split-window-horizontally)
-  ;; General lang options
-  (define-key evil-normal-state-map (kbd ", c") 'compile)
-  ;; Projectile
-  (define-key evil-normal-state-map (kbd "SPC r") 'projectile-grep)
-  ;; CJK toggle
-  (define-key evil-normal-state-map (kbd "SPC c") 'cjk-enable))
-
-(use-package git-timemachine
-  :ensure t)
+  :hook (after-init . evil-mode)
+  :general
+  (my-leader-def
+	:states 'normal
+    "b" '(:ignore t :which-key "buffer")
+    "g" '(:ignore t :which-key "magit")
+    "f" '(:ignore t :which-key "files")
+	"bb" 'helm-buffers-list
+	"bk" 'kill-this-buffer
+	"bd" 'kill-other-buffers
+	"bh" 'switch-to-home-buffer
+	"br" 'revert-buffer
+	"ff" 'helm-find-files
+	"ft" 'helm-tramp
+	"h" 'split-window-vertically
+	"v" 'split-window-horizontally
+    ;; Projectile
+    "r" 'projectile-grep
+    ;; CJK toggle
+    "c" 'cjk-enable)
+  (local-leader-def
+	:states 'normal
+    ;; General lang options
+	"c" 'compile))
 
 (use-package evil-magit
   :ensure t
-  :after (evil)
   :config
   (evil-magit-init)
-  ;; Magit
-  (define-key evil-normal-state-map (kbd "SPC g d") 'magit-dispatch-popup)
-  (define-key evil-normal-state-map (kbd "SPC g s") 'magit-status)
-  (define-key evil-normal-state-map (kbd "SPC g b") 'magit-blame)
-  (define-key evil-normal-state-map (kbd "SPC g t") 'git-timemachine-toggle))
+  (use-package git-timemachine
+	:ensure t
+	:general
+	(my-leader-def
+	  :states 'normal
+	  "gt" 'git-timemachine-toggle))
+  :general
+  (my-leader-def
+	:states 'normal
+	;; Magit
+	"gd" 'magit-dispatch-popup
+	"gs" 'magit-status
+	"gb" 'magit-blame))
 
 (use-package neotree
   :ensure t
-  :after (evil)
-  :config
-  (define-key evil-normal-state-map (kbd "SPC t") 'neotree-toggle)
-  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-  (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
-  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter))
+  :general
+  (my-leader-def
+	:states 'normal
+	"t" 'neotree-toggle)
+  (general-define-key
+   :states 'normal
+   :keymaps 'neotree-mode-map
+   "TAB" 'neotree-enter
+   "SPC" 'neotree-quick-look
+   "q" 'neotree-hide
+   "t" 'neotree-toggle
+   "RET" 'neotree-enter))
 
 (use-package org
   :ensure t
+  :general
+  (local-leader-def
+    :states 'normal
+    :keymaps 'org-mode-map
+	"e" 'org-export-dispatch
+	"x" 'org-table-export
+	"." 'org-time-stamp
+	"t" 'org-twbs-export-to-html
+	"s" 'org-schedule
+	"d" 'org-deadline
+	"c" 'org-ref-helm-cite
+	"'" 'org-edit-special)
   :config
   ;; log todo items with timestamp
   (setq org-log-done 'time)
@@ -322,30 +363,21 @@ names an existing file."
   ;; (setq org-latex-pdf-process
   ;; '("pdflatex %f" "bibtex %b" "pdflatex %f" "pdflatex %f"))
   (setq org-latex-pdf-process
-	'("pdflatex -interaction nonstopmode -output-directory %o %f"
+		'("pdflatex -interaction nonstopmode -output-directory %o %f"
           "bibtex %b"
           "pdflatex -interaction nonstopmode -output-directory %o %f"
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
-  (evil-define-key 'normal org-mode-map (kbd ", e") 'org-export-dispatch)
-  (evil-define-key 'normal org-mode-map (kbd ", x") 'org-table-export)
-  (evil-define-key 'normal org-mode-map (kbd ", .") 'org-time-stamp)
-  (evil-define-key 'normal org-mode-map (kbd ", t") 'org-twbs-export-to-html)
-  (evil-define-key 'normal org-mode-map (kbd ", s") 'org-schedule)
-  (evil-define-key 'normal org-mode-map (kbd ", d") 'org-deadline)
-  (evil-define-key 'normal org-mode-map (kbd ", c") 'org-ref-helm-cite)
-  (evil-define-key 'normal org-mode-map (kbd ", '") 'org-edit-special))
+  (use-package org-bullets-mode
+	:ensure org-bullets
+	:hook org-mode)
 
-(use-package org-bullets-mode
-  :ensure org-bullets
-  :hook org-mode)
-
-(use-package org-ref
-  :disabled
-  ;; :ensure t
-  :init
-  ;; Bibtex references
-  (setq reftex-default-bibliography '("~/Sync/Sync/references.bib")))
+  (use-package org-ref
+	:disabled
+	;; :ensure t
+	:init
+	;; Bibtex references
+	(setq reftex-default-bibliography '("~/Sync/Sync/references.bib"))))
 
 ;; C and C++ config
 
@@ -355,12 +387,21 @@ names an existing file."
   :init
   (set-variable 'ycmd-server-command `("/usr/bin/python2" ,(file-truename "/usr/share/vim/vimfiles/third_party/ycmd/ycmd/")))
   (set-variable 'ycmd-global-config "/home/jorrit/.emacs.d/lang/ycm_conf.py")
-  (set-variable 'ycmd-extra-conf-whitelist '("/home/jorrit/Dev/*")))
-
-(use-package company-ycmd-mode
-  :ensure company-ycmd
-  :commands (company-ycmd-setup)
-  :hook (ycmd-mode . company-ycmd-setup))
+  (set-variable 'ycmd-extra-conf-whitelist '("/home/jorrit/Dev/*"))
+  :config
+  (use-package company-ycmd-mode
+	:ensure company-ycmd
+	:commands (company-ycmd-setup)
+	:hook (ycmd-mode . company-ycmd-setup))
+  
+  (use-package flycheck-ycmd
+	:ensure t
+	:commands (flycheck-ycmd-setup)
+	:hook (ycmd-mode . flycheck-ycmd-setup)
+	:init
+	(setq flycheck-clang-language-standard "c++11")
+	(when (not (display-graphic-p))
+      (setq flycheck-indication-mode nil))))
 
 (use-package clang-format
   :ensure t
@@ -370,38 +411,8 @@ names an existing file."
    :modes '(c-mode-map c++-mode-map)
    "b" '(:ignore t :which-key "clang")
    "bf" 'clang-format-buffer)
-  :config
+  :init
   (setq-default clang-format-style "{BasedOnStyle: llvm, IndentWidth: 4}"))
-
-(use-package flycheck-ycmd
-  :ensure t
-  :after (flycheck)
-  :commands (flycheck-ycmd-setup)
-  :hook (ycmd-mode . flycheck-ycmd-setup)
-  :config
-  (flycheck-ycmd-setup)
-  (setq flycheck-clang-language-standard "c++11")
-  (when (not (display-graphic-p))
-    (setq flycheck-indication-mode nil)))
-
-(use-package helm-gtags-mode
-  :ensure helm-gtags
-  :hook (c-mode c++-mode)
-  :general
-  (local-leader-def
-   :states 'normal
-   :keymaps '(c++-mode-map c-mode-map)
-   "f" 'helm-gtags-find-tag
-   "j" 'helm-gtags-dwim
-   "g" '(:ignore t :which-key "gtags")
-   "gp" 'helm-gtags-find-pattern
-   "gr" 'helm-gtags-find-rtag
-   "gP" 'helm-gtags-find-files
-   "gp" 'helm-gtags-find-pattern
-   "gf" 'helm-gtags-parse-file
-   "gg" 'helm-gtags-create-tags
-   "gu" 'helm-gtags-update-tags
-   "gc" 'helm-gtags-clear-cache))
 
 (use-package srefactor
   :ensure t
@@ -417,33 +428,37 @@ names an existing file."
 (use-package typescript-mode
   :ensure t
   :mode "\\.ts\\'"
-  :interpreter "typescript")
-
-(use-package tide
-  :ensure t
-  :after (typescript-mode)
-  :commands (tide-setup)
-  :hook (typescript-mode . tide-setup)
-  :general
-  (local-leader-def
-   :states 'normal
-   :keymaps 'typescript-mode-map
-   "c" 'tide-compile-file
-   "f" 'tide-format
-   "r" 'tide-restart-server
-   "m" 'tide-fix
-   "p" 'tide-project-errors))
+  :interpreter "typescript"
+  :config
+  (use-package tide
+	:ensure t
+	:commands (tide-setup)
+	:hook (typescript-mode . tide-setup)
+	:general
+	(local-leader-def
+	  :states 'normal
+	  :keymaps 'typescript-mode-map
+	  "c" 'tide-compile-file
+	  "f" 'tide-format
+	  "r" 'tide-restart-server
+	  "m" 'tide-fix
+	  "p" 'tide-project-errors)))
 
 ;; Latex config
-;; (use-package tex
-;;  :ensure auctex
-;;  :init
-;;  (setq TeX-PDF-mode t)
-;;  :general
-;;  (local-leader-def
-;;   :states 'normal
-;;   :keymaps 'LaTeX-mode-map
-;;   "c" 'Tex-command-master))
+(use-package tex
+  :ensure auctex
+  :init
+  (setq TeX-PDF-mode t)
+  :general
+  (local-leader-def
+	:states 'normal
+	:keymaps 'LaTeX-mode-map
+	"c" 'Tex-command-master)
+  :config
+  (use-package company-auctex
+	:ensure t
+	:commands (company-auctex-init)
+	:hook (LaTeX-mode . company-auctex-init)))
 
 ;; (use-package auctex-latexmk
 ;;   :ensure t
@@ -453,11 +468,6 @@ names an existing file."
 ;;   :states 'normal
 ;;   :keymaps 'LaTeX-mode-map
 ;;   "c" 'output-pdf))
-
-;;(use-package company-auctex
-;;  :ensure t
-;;  :commands (company-auctex-init)
-;;  :hook (LaTeX-mode . company-auctex-init))
 
 ;; PHP config
 (use-package php-mode
