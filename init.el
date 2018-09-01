@@ -22,6 +22,21 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Larger garbage collection invocation buffer
+(setq gc-cons-threshold-original gc-cons-threshold)
+(setq gc-cons-threshold 100000000)
+(setq file-name-handler-alist-original file-name-handler-alist)
+(setq file-name-handler-alist nil)
+;; Restore values after time
+(run-with-idle-timer
+ 3 nil
+ (lambda ()
+   (setq gc-cons-threshold gc-cons-threshold-original)
+   (setq file-name-handler-alist file-name-handler-alist-original)
+   (makunbound 'gc-cons-threshold-original)
+   (makunbound 'file-name-handler-alist-original)
+   (message "gc-cons-threshold and file-name-handler-alist restored")))
+
 ;; UTF-8 please
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
