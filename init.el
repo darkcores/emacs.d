@@ -435,6 +435,22 @@ names an existing file."
           "pdflatex -interaction nonstopmode -output-directory %o %f"
           "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
+  ;; Preamble template for documents
+  (add-to-list 'org-structure-template-alist
+			   '("P" "#+TITLE:
+#+SUBTITLE:
+#+AUTHOR: Jorrit Gerets
+#+EMAIL: contact@jorrit.info
+#+OPTIONS: \":t
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper]
+#+LATEX_HEADER: \\usepackage[margin=1.1in]{geometry}
+#+BEGIN_EXPORT latex
+\\maketitle
+\\pagebreak
+#+END_EXPORT
+"))
+
   (use-package org-bullets-mode
 	:ensure org-bullets
 	:hook org-mode)
