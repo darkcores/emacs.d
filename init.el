@@ -182,6 +182,10 @@ names an existing file."
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; Fold codeblocks
+(use-package hideshow
+  :hook (prog-mode . hs-minor-mode))
+
 ;; Easier keybindings so we can do more lazy loading
 (use-package general
   :ensure t
