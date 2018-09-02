@@ -429,6 +429,12 @@ names an existing file."
   :config
   ;; log todo items with timestamp
   (setq org-log-done 'time)
+  
+  (setq org-latex-pdf-process
+		'("pdflatex -interaction nonstopmode -output-directory %o %f"
+		  "bibtex %b"
+		  "pdflatex -interaction nonstopmode -output-directory %o %f"
+		  "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
   ;; Compile command
   ;; (setq org-latex-pdf-process
@@ -452,6 +458,7 @@ names an existing file."
 #+LATEX_HEADER: \\renewcommand\\maketitle{}
 #+LATEX_HEADER: \\usepackage{fancyhdr}
 #+LATEX_HEADER: \\usepackage{vmargin}
+#+LATEX_HEADER: \\graphicspath{/home/jorrit/Sync/Universiteit/Images}
 "))
   (add-to-list 'org-structure-template-alist
 			   '("T" "#+BEGIN_EXPORT latex
@@ -482,16 +489,20 @@ names an existing file."
 \\end{titlepage}
 #+END_EXPORT"))
 
+  (add-to-list 'org-structure-template-alist
+			   '("B" "bibliographystyle:unsrt
+bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
+	
   (use-package org-bullets-mode
 	:ensure org-bullets
 	:hook org-mode)
 
   (use-package org-ref
-	:disabled
-	;; :ensure t
+	:ensure t
 	:init
 	;; Bibtex references
-	(setq reftex-default-bibliography '("~/Sync/Sync/references.bib"))))
+	(setq org-ref-default-bibliography "/home/jorrit/Sync/Universiteit/references.bib")
+	(setq reftex-default-bibliography '("/home/jorrit/Sync/Universiteit/references.bib"))))
 
 ;; C and C++ config
 
