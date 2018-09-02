@@ -424,7 +424,6 @@ names an existing file."
 	"t" 'org-twbs-export-to-html
 	"s" 'org-schedule
 	"d" 'org-deadline
-	"c" 'org-ref-helm-cite
 	"'" 'org-edit-special)
   :config
   ;; log todo items with timestamp
@@ -499,6 +498,10 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
 
   (use-package org-ref
 	:ensure t
+	:config
+	(local-leader-def
+	  :states 'normal
+	  "u" 'org-ref-helm-insert-cite-link)
 	:init
 	;; Bibtex references
 	(setq org-ref-default-bibliography "/home/jorrit/Sync/Universiteit/references.bib")
