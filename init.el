@@ -457,28 +457,28 @@ names an existing file."
 			   '("T" "#+BEGIN_EXPORT latex
 \\makeatletter
 \\begin{titlepage}
- \\centering
-    \\vspace*{0.5 cm}
-    \\includegraphics[scale = 0.75]{logo.png}\\\\[1.0 cm]  % University Logo
-    \\textsc{\\LARGE Universiteit Hasselt}\\\\[2.0 cm]  % University Name
-    \\textsc{\\Large VAK/OPDRACHT}\\\\[0.5 cm]               % Course Code
-    \\rule{\\linewidth}{0.2 mm} \\\\[0.4 cm]
-    { \\huge \\bfseries \\@title}\\\\
-    \\rule{\\linewidth}{0.2 mm} \\\\[1.5 cm]
-    \\begin{minipage}{0.4\\textwidth}
-        \\begin{flushleft} \\large
-            \\emph{Submitted To:}\\\\
-			Prof. ... whatever \\\\
-			Dept. XYZ\\\\
-            \\end{flushleft}
-            \\end{minipage}~
-            \\begin{minipage}{0.4\\textwidth}
-            \\begin{flushright} \\large
-            \\emph{Submitted By :} \\\\
-			\\@author\\\\
-			1541396\\\\
-        \\end{flushright}
-    \\end{minipage}\\\\[2 cm]
+  \\centering
+  \\vspace*{0.5 cm}
+  \\includegraphics[scale = 0.75]{logo.png}\\\\[1.0 cm]  % University Logo
+  \\textsc{\\LARGE Universiteit Hasselt}\\\\[2.0 cm]  % University Name
+  \\textsc{\\Large VAK/OPDRACHT}\\\\[0.5 cm]               % Course Code
+  \\rule{\\linewidth}{0.2 mm} \\\\[0.4 cm]
+  { \\huge \\bfseries \\@title}\\\\
+  \\rule{\\linewidth}{0.2 mm} \\\\[1.5 cm]
+  \\begin{minipage}{0.4\\textwidth}
+    \\begin{flushleft} \\large
+      \\emph{Submitted To:}\\\\
+      Prof. ... whatever \\\\
+      Dept. XYZ\\\\
+    \\end{flushleft}
+  \\end{minipage}~
+  \\begin{minipage}{0.4\\textwidth}
+    \\begin{flushright} \\large
+      \\emph{Submitted By :} \\\\
+      \\@author\\\\
+      1541396\\\\
+    \\end{flushright}
+  \\end{minipage}\\\\[2 cm]
 \\end{titlepage}
 #+END_EXPORT"))
 
