@@ -14,7 +14,7 @@
 	("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-	(powerline rainbow-mode web-mode json-reformat json-mode markdown-mode restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
+	(ess ess-site powerline rainbow-mode web-mode json-reformat json-mode markdown-mode restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -639,5 +639,22 @@ names an existing file."
 (use-package rainbow-mode
   :ensure t
   :hook (css-mode web-mode))
-  
+
+;; R statistics config
+(use-package ess-r-mode
+  :ensure ess
+  :mode "\\.r\\'"
+  :general
+  (local-leader-def
+	:states '(normal visual)
+	:keymaps 'ess-mode-map
+	;; "e" '(:ignore t :which-key "eval")
+	"b" 'ess-eval-buffer
+	"r" 'ess-eval-region
+	"l" 'ess-eval-line
+	"f" 'ess-eval-function
+	"F" 'ess-load-file
+	"q" 'ess-quit
+	"`" 'ess-show-traceback))
+
 ;;; init.el ends here
