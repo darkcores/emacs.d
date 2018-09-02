@@ -14,7 +14,7 @@
 	("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-	(restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
+	(powerline rainbow-mode web-mode json-reformat json-mode markdown-mode restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -391,6 +391,16 @@ names an existing file."
    "r" 'neotree-refresh
    "RET" 'neotree-enter))
 
+(use-package powerline
+  :ensure t
+  :commands (powerline-default-theme)
+  :hook (after-init . powerline-default-theme))
+
+;;(use-package smart-mode-line
+;;  :ensure t
+;;  :config
+;;  (sml/setup))
+
 (use-package org
   :ensure t
   :pin "org"
@@ -572,7 +582,6 @@ names an existing file."
    "f" 'python-shell-send-file))
     
 ;; Rust config
-
 (use-package rust-mode
   :ensure t
   :mode "\\.rs\\'"
@@ -581,10 +590,54 @@ names an existing file."
   (use-package flycheck-rust
     :ensure t
     :hook (rust-mode . flycheck-rust-setup))
+  (use-package racer
+	:ensure t
+	:hook (rust-mode . racer-mode))
   :general
   (local-leader-def
    :states 'normal
    :keymaps 'rust-mode-map
    "f" 'rust-format-buffer))
 
+;; Markdown config
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode)
+  :mode "\\.md\\'"
+  :interpreter "markdown")
+
+;; json config
+(use-package json-mode
+  :ensure t
+  :commands (json-mode)
+  :mode "\\.json\\'"
+  :interpreter "json"
+  :config
+  (use-package json-reformat
+	:ensure t
+	:general
+	(local-leader-def
+	  :states '(normal visual)
+	  :keymaps 'json-mode-map
+	  "f" 'json-reformat-region)))
+
+;; Javascript config
+(use-package js2-mode
+  :ensure t
+  :mode "\\.js\\'"
+  :interpreter "javascript")
+
+;; Web mode config
+(use-package web-mode
+  :ensure t
+  :mode "\\.html?\\'"
+  :init
+  (setq web-mode-markup-indent-offset 4)
+  (setq web-mode-css-indent-offset 4)
+  (setq web-mode-code-indent-offset 4))
+
+(use-package rainbow-mode
+  :ensure t
+  :hook (css-mode web-mode))
+  
 ;;; init.el ends here
