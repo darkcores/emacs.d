@@ -445,15 +445,42 @@ names an existing file."
 #+SUBTITLE:
 #+AUTHOR: Jorrit Gerets
 #+EMAIL: contact@jorrit.info
-#+OPTIONS: \":t
+#+OPTIONS: \":t toc:nil
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS: [a4paper]
 #+LATEX_HEADER: \\usepackage[margin=1.1in]{geometry}
-#+BEGIN_EXPORT latex
-\\maketitle
-\\pagebreak
-#+END_EXPORT
+#+LATEX_HEADER: \\renewcommand\\maketitle{}
+#+LATEX_HEADER: \\usepackage{fancyhdr}
+#+LATEX_HEADER: \\usepackage{vmargin}
 "))
+  (add-to-list 'org-structure-template-alist
+			   '("T" "#+BEGIN_EXPORT latex
+\\makeatletter
+\\begin{titlepage}
+ \\centering
+    \\vspace*{0.5 cm}
+    \\includegraphics[scale = 0.75]{logo.png}\\\\[1.0 cm]  % University Logo
+    \\textsc{\\LARGE Universiteit Hasselt}\\\\[2.0 cm]  % University Name
+    \\textsc{\\Large VAK/OPDRACHT}\\\\[0.5 cm]               % Course Code
+    \\rule{\\linewidth}{0.2 mm} \\\\[0.4 cm]
+    { \\huge \\bfseries \\@title}\\\\
+    \\rule{\\linewidth}{0.2 mm} \\\\[1.5 cm]
+    \\begin{minipage}{0.4\\textwidth}
+        \\begin{flushleft} \\large
+            \\emph{Submitted To:}\\\\
+			Prof. ... whatever \\\\
+			Dept. XYZ\\\\
+            \\end{flushleft}
+            \\end{minipage}~
+            \\begin{minipage}{0.4\\textwidth}
+            \\begin{flushright} \\large
+            \\emph{Submitted By :} \\\\
+			\\@author\\\\
+			1541396\\\\
+        \\end{flushright}
+    \\end{minipage}\\\\[2 cm]
+\\end{titlepage}
+#+END_EXPORT"))
 
   (use-package org-bullets-mode
 	:ensure org-bullets
