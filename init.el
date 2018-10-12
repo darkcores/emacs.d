@@ -14,7 +14,7 @@
 	("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-	(js2-mode ess ess-site powerline rainbow-mode web-mode json-reformat json-mode markdown-mode restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
+	(diminish flycheck-ycmd js2-mode ess ess-site powerline rainbow-mode web-mode json-reformat json-mode markdown-mode restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -127,6 +127,7 @@
     (cjk-enable))
 
 (set-frame-font "Source Code Pro 11")
+(setq default-frame-alist '((font . "Source Code Pro 11")))
 
 (defun kill-other-buffers ()
   "Kill all other buffers."
@@ -148,6 +149,17 @@ names an existing file."
           (expand-file-name argi command-line-default-directory)))))
 
 (add-hook 'command-line-functions #'my-inhibit-startup-screen-file)
+
+;; Debugging setup
+(setq gdb-many-windows t)
+
+;; Color in compilation buffer (for cmake mostly)
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (toggle-read-only)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (toggle-read-only))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; Setup packages
 (package-initialize)
@@ -172,7 +184,7 @@ names an existing file."
   :ensure t
   :init
   (setq dashboard-items '((recents  . 15)
-                          (projects . 5)
+                          (projects . 10)
                           (bookmarks . 5)))
   (setq dashboard-banner-logo-title "Welcome to Shuttlemacs")
   :config
@@ -365,7 +377,16 @@ names an existing file."
   (local-leader-def
 	:states 'normal
     ;; General lang options
-	"c" 'compile))
+	"c" 'compile
+	"d" (defun debugger ()
+		  (interactive)
+		  (select-frame (make-frame))
+		  (command-execute 'gdb)))
+  (local-leader-def
+	:states 'normal
+	:keymaps 'gdb-mode-map
+	;; TODO gdb keymaps
+	))
 
 (use-package evil-magit
   :ensure t
@@ -508,49 +529,63 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
 	(setq reftex-default-bibliography '("/home/jorrit/Sync/Universiteit/references.bib"))))
 
 ;; C and C++ config
-
-(use-package ycmd-mode
-  :ensure ycmd
-  :hook (c-mode c++-mode)
-  :init
-  (set-variable 'ycmd-server-command `("/usr/bin/python2" ,(file-truename "/usr/share/vim/vimfiles/third_party/ycmd/ycmd/")))
-  (set-variable 'ycmd-global-config "/home/jorrit/.emacs.d/lang/ycm_conf.py")
-  (set-variable 'ycmd-extra-conf-whitelist '("/home/jorrit/Dev/*"))
-  :config
-  (use-package company-ycmd-mode
-	:ensure company-ycmd
-	:commands (company-ycmd-setup)
-	:hook (ycmd-mode . company-ycmd-setup))
-  
-  (use-package flycheck-ycmd
-	:ensure t
-	:commands (flycheck-ycmd-setup)
-	:hook (ycmd-mode . flycheck-ycmd-setup)
-	:init
-	(setq flycheck-clang-language-standard "c++11")
-	(when (not (display-graphic-p))
-      (setq flycheck-indication-mode nil))))
-
 (use-package clang-format
   :ensure t
   :general
   (local-leader-def
    :states 'normal
    :modes '(c-mode-map c++-mode-map)
-   "b" '(:ignore t :which-key "clang")
+   "b" '(:ignore t :which-key "buffer")
    "bf" 'clang-format-buffer)
   :init
   (setq-default clang-format-style "{BasedOnStyle: llvm, IndentWidth: 4}"))
 
-(use-package srefactor
-  :ensure t
-  :commands (srefactor-refactor-at-point)
-  :hook ((c-mode c++-mode) . semantic-mode)
+
+(use-package ycmd-mode
+  :ensure ycmd
+  :hook (c-mode c++-mode)
   :general
-  (local-leader-def
-   :states 'normal
-   :keymaps '(c++-mode-map c-mode-map)
-   "r" 'srefactor-refactor-at-point))
+  (my-leader-def
+	:states 'normal
+	"y" 'ycmd-mode)
+  :init
+  (set-variable 'ycmd-server-command `("/usr/bin/python2" ,(file-truename "/usr/share/vim/vimfiles/third_party/ycmd/ycmd/")))
+  (set-variable 'ycmd-global-config "/home/jorrit/.emacs.d/lang/ycm_conf.py")
+  (set-variable 'ycmd-extra-conf-whitelist '("/home/jorrit/Dev/*" "/home/jorrit/Sync/Universiteit/*"))
+;;   :config
+  (use-package company-ycmd
+	:ensure t
+  	:commands (company-ycmd-setup)
+  	:hook (ycmd-mode . company-ycmd-setup))
+  
+  (use-package flycheck-ycmd
+	:ensure t
+	:commands (flycheck-ycmd-setup)
+	:hook (ycmd-mode . flycheck-ycmd-setup)
+	:config
+	;; (setq flycheck-clang-language-standard "c++11")
+	(when (not (display-graphic-p))
+      (setq flycheck-indication-mode nil))))
+
+;; (use-package flex-mode
+;;   :mode "\\.lex\\'"
+;;   :interpreter "flex"
+;;   :load-path "lang/")
+
+(use-package bison-mode
+  :mode "\\.lex\\'"
+  :interpreter "bison"
+  :load-path "lang/")
+
+;; (use-package srefactor
+;;   :ensure t
+;;   :commands (srefactor-refactor-at-point)
+;;   :hook ((c-mode c++-mode) . semantic-mode)
+;;   :general
+;;   (local-leader-def
+;;    :states 'normal
+;;    :keymaps '(c++-mode-map c-mode-map)
+;;    "r" 'srefactor-refactor-at-point))
 
 ;; Javascript (typescript) config
 (use-package typescript-mode
@@ -723,5 +758,22 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
 	"F" 'ess-load-file
 	"q" 'ess-quit
 	"`" 'ess-show-traceback))
+
+;; Hide some always used minor modes from mode line
+(use-package diminish
+  :ensure t
+  :after (dashboard company)
+  :config
+  (diminish 'company-mode)
+  (diminish 'helm-mode)
+  (diminish 'flycheck-mode)
+  (diminish 'undo-tree-mode)
+  (diminish 'projectile-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'which-key-mode)
+  (diminish 'hs-minor-mode)
+  (diminish 'page-break-lines-mode)
+  (diminish 'abbrev-mode)
+  (diminish 'helm-gtags-mode))
 
 ;;; init.el ends here
