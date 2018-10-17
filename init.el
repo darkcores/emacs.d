@@ -4,24 +4,6 @@
 
 ;;; Code:
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-	("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
- '(package-selected-packages
-   (quote
-	(all-the-icons diminish flycheck-ycmd js2-mode ess ess-site powerline rainbow-mode web-mode json-reformat json-mode markdown-mode restart-emacs auctex clang-format evil auto-package-update rust-mode flycheck-rust company-anaconda anaconda-mode company-php php-mode auctex-latexmk company-auctex tide typescript-mode general srefactor helm-gtags-mode helm-gtags ycmd org-ref org-bullets helm-projectile git-timemachine helm-tramp help-projectile fcitx which-key use-package solarized-theme rainbow-delimiters neotree helm flycheck evil-magit dashboard company ace-popup-menu))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
 ;; Larger garbage collection invocation buffer
 (setq gc-cons-threshold-original gc-cons-threshold)
 (setq gc-cons-threshold 100000000)
@@ -36,6 +18,12 @@
    (makunbound 'gc-cons-threshold-original)
    (makunbound 'file-name-handler-alist-original)
    (message "gc-cons-threshold and file-name-handler-alist restored")))
+
+;; (let ((file-name-handler-alist nil)) "init.el")
+
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; UTF-8 please
 (prefer-coding-system 'utf-8)
@@ -172,6 +160,12 @@ names an existing file."
 (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
+;; (setq use-package-compute-statistics t)
+(require 'diminish)
+
+;; startup profiler
+(use-package esup
+  :ensure t)
 
 ;; Setup theme
 (use-package solarized-theme
@@ -194,8 +188,12 @@ names an existing file."
   :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package undo-tree
+  :diminish undo-tree-mode)
+
 ;; Fold codeblocks
 (use-package hideshow
+  :diminish hs-minor-mode
   :hook (prog-mode . hs-minor-mode))
 
 ;; Easier keybindings so we can do more lazy loading
@@ -256,6 +254,7 @@ names an existing file."
 (use-package which-key
   :ensure t
   :hook (after-init . which-key-mode)
+  :diminish which-key-mode
   :init
   (setq which-key-idle-delay 0.3))
 
@@ -263,6 +262,7 @@ names an existing file."
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode)
+  :diminish company-mode
   :init
   (setq company-minimum-prefix-length 2)
   (setq company-idle-delay 0.2))
@@ -270,6 +270,7 @@ names an existing file."
 ;; Global syntax checking
 (use-package flycheck
   :ensure t
+  :diminish flycheck-mode
   :hook (after-init . global-flycheck-mode))
 
 ;; Fcitx input setup
@@ -283,6 +284,7 @@ names an existing file."
 (use-package helm
   :ensure t
   :hook (after-init . helm-mode)
+  :diminish (helm-mode helm-gtags-mode)
   :commands (helm-autoresize-mode)
   :init
   ;; (defvar helm-google-suggest-use-curl-p)
@@ -523,6 +525,7 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
 
   (use-package org-ref
 	:ensure t
+	:hook org-mode
 	:config
 	(local-leader-def
 	  :states 'normal
@@ -544,6 +547,14 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
   :init
   (setq-default clang-format-style "{BasedOnStyle: llvm, IndentWidth: 4}"))
 
+(use-package disaster
+  :ensure t
+  :general
+  (local-leader-def
+	:states 'normal
+	:modes '(c-mode-map c++-mode-map)
+	"a" 'disaster))
+
 
 (use-package ycmd-mode
   :ensure ycmd
@@ -553,7 +564,7 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
 	:states 'normal
 	"y" 'ycmd-mode)
   :init
-  (set-variable 'ycmd-server-command `("/usr/bin/python2" ,(file-truename "/usr/share/vim/vimfiles/third_party/ycmd/ycmd/")))
+  (set-variable 'ycmd-server-command `("/usr/bin/python" ,(file-truename "/usr/share/vim/vimfiles/third_party/ycmd/ycmd/")))
   (set-variable 'ycmd-global-config "/home/jorrit/.emacs.d/lang/ycm_conf.py")
   (set-variable 'ycmd-extra-conf-whitelist '("/home/jorrit/Dev/*" "/home/jorrit/Sync/Universiteit/*"))
 ;;   :config
@@ -766,7 +777,6 @@ bibliography:/home/jorrit/Sync/Universiteit/references.bib"))
 ;; Hide some always used minor modes from mode line
 (use-package diminish
   :ensure t
-  :after (dashboard company)
   :config
   (diminish 'company-mode)
   (diminish 'helm-mode)
